@@ -1,1 +1,11 @@
 <%= link_to "New Project", new_project_path%>
+<br>
+<% someName %>
+<%= yield :someName %>
+<br>
+<%= content_for :someName %>
+<br>
+<%= content_for :anotherName do %>
+  ABCDEFMNP
+<% end %>
+<%= content_for :anotherName %>
