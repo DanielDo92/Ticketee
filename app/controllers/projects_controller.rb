@@ -26,7 +26,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @count = 1
     if @project.update(project_params)
       flash[:notice] = "Project has been updated"
       redirect_to @project
