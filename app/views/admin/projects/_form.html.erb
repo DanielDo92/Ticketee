@@ -1,0 +1,10 @@
+<%= simple_form_for([:admin, project]) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %><br>
+
+  <%= f.button :submit, class: "btn-primary" %>
+  <br> <br>
+  <%= link_to "Cancel", :back, class: "btn btn-warning" %>
+  <%= f.submit :Clear, type: :reset, class: "btn btn-info" %>
+  <!--#For learning purpose only-->
+<% end %>

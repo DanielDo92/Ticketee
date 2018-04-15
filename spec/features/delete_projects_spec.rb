@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature "User can delete projects" do
+  before do
+    login_as (FactoryGirl.create(:user, :admin))
+  end
   scenario "successfully" do
     FactoryGirl.create(:project, name: "Sublime Text 3")
-
     visit "/"
     click_link "Sublime Text 3"
     click_link "Delete Project"
