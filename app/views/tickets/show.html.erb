@@ -17,10 +17,18 @@
                     data: {confirm: "Are you sure you want to delete this project"},
                     class: "delete"
         %>
-
       </li>
     </ul>
   </header>
-
+  <table id="attributes">
+    <tr>
+      <th> Author: </th>
+      <td><%= @ticket.author.email %></td>
+    </tr>
+    <tr>
+      <th> Created:</th>
+      <td><%= time_ago_in_words(@ticket.created_at) %> ago </td>
+    </tr>
+  </table>
   <%= simple_format(@ticket.description) %>
 </div>
