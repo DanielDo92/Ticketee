@@ -17,10 +17,15 @@ RSpec.feature "Users can only see the appropriate links" do
     # end
   end
 
-  context "regular user" do
+  context "non-admin users (project viewers)" do
     before do
       assign_role!(user, :viewer, project)
       login_as(user)
+    end
+
+    scenario "cannot see the New Ticket link" do
+      visit project_path(project)
+      expect(page).not_to have_link "New Ticket"
     end
 
     scenario "cannot see the New Project link" do
@@ -41,6 +46,11 @@ RSpec.feature "Users can only see the appropriate links" do
 
   context "admin user" do
     before { login_as(admin) }
+
+    scenario "can see the New Ticket link" do
+      visit project_path(project)
+      expect(page).to have_link("New Ticket")
+    end
 
     scenario "can see the New Project link" do
       visit "/"

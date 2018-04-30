@@ -21,7 +21,10 @@
 </header>
 
 <p><%= @project.description %></p>
-<%= link_to "New Ticket", new_project_ticket_path(@project), class: "new" %>
+
+<% if policy(Ticket.new(project: @project)).create? %>
+  <%= link_to "New Ticket", new_project_ticket_path(@project), class: "new" %>
+<% end %>
 <ul id="tickets">
   <% @project.tickets.each do |ticket| %>
     <li>
