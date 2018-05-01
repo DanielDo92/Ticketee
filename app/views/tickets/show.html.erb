@@ -6,18 +6,24 @@
   <header>
     <h2> <%= @ticket.name %> </h2>
     <ul class="actions">
-      <li>
-        <%= link_to "Edit Ticket",
-                    edit_project_ticket_path(@project, @ticket),
-                    class: "edit"
-        %>
-        <%= link_to "Delete Ticket",
-                    project_ticket_path(@project, @ticket),
-                    method: :delete,
-                    data: {confirm: "Are you sure you want to delete this project"},
-                    class: "delete"
-        %>
-      </li>
+      <% if policy(@ticket).update? %>
+        <li>
+          <%= link_to "Edit Ticket",
+                      edit_project_ticket_path(@project, @ticket),
+                      class: "edit"
+          %>
+        </li>
+      <% end %>
+      <% if policy(@ticket).destroy? %>
+        <li>
+          <%= link_to "Delete Ticket",
+                      project_ticket_path(@project, @ticket),
+                      method: :delete,
+                      data: {confirm: "Are you sure you want to delete this project"},
+                      class: "delete"
+          %>
+        </li>
+      <% end %>
     </ul>
   </header>
   <table id="attributes">

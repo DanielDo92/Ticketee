@@ -28,6 +28,7 @@ class TicketsController < ApplicationController
   end
 
   def update
+    authorize @ticket, :update?
     if @ticket.update(ticket_params)
       flash[:success] = "Ticket has been updated"
       redirect_to [@project, @ticket]
@@ -38,6 +39,7 @@ class TicketsController < ApplicationController
   end
 
   def destroy
+    authorize @ticket, :destroy?
     @ticket.destroy
     flash[:notice] = "Ticket has been deleted"
     redirect_to project_path(@project)
