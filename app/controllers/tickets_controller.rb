@@ -21,6 +21,7 @@ class TicketsController < ApplicationController
   end
 
   def edit
+    authorize @ticket, :update?
   end
 
   def show
