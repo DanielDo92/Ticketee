@@ -11,7 +11,8 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.new(user_params)
+    build_roles_for(@user)
     if @user.save!
       flash[:notice] = "User has been created."
       redirect_to admin_users_path
@@ -33,14 +34,7 @@ class Admin::UsersController < Admin::ApplicationController
       params[:user].delete(:password)
     end
     User.transaction do
-      @user.roles.clear
-      role_data = params.fetch(:role,[])
-      role_data.each do |project_id, role_name|
-        if role_name.present?
-          @user.roles.build(project_id: project_id, role: role_name)
-        end
-      end
-
+      build_roles_for(@user)
       if @user.update_attributes(user_params)
         flash[:notice] = "User has been updated."
         redirect_to admin_users_path
@@ -78,5 +72,15 @@ class Admin::UsersController < Admin::ApplicationController
 
   def set_projects
     @projects = Project.order(:name)
+  end
+
+  def build_roles_for(user)
+    user.roles.clear
+    role_data = params.fetch(:role,[])
+    role_data.each do |project_id, role_name|
+      if role_name.present?
+        user.roles.build(project_id: project_id, role: role_name)
+      end
+    end
   end
 end
