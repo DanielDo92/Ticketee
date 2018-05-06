@@ -31,9 +31,10 @@ gem 'unicorn'
 
 gem 'rake', '< 11.0'
 
+gem "carrierwave", "~> 0.10.0"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-#
 
 gem "bootstrap-sass", "~> 3.3"
 gem "font-awesome-rails", "~> 4.3"
