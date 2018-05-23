@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TicketPolicy do
   context "permissions" do
-    subject { TicketPolicy.new(user, ticket)}
+    subject { TicketPolicy.new(user, ticket) }
 
     let(:user) { FactoryGirl.create(:user) }
     let(:project) { FactoryGirl.create(:project) }

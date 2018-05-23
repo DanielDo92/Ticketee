@@ -23,11 +23,12 @@ class TicketsController < ApplicationController
 
   def edit
     authorize @ticket, :update?
-    3.times { @ticket.attachments.build }
+    @ticket.attachments.build
   end
 
   def show
     authorize @ticket, :show?
+    @comment = @ticket.comments.build
   end
 
   def update
