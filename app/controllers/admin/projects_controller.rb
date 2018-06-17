@@ -1,6 +1,7 @@
 class Admin::ProjectsController < Admin::ApplicationController
   def new
-    @project = Project.new
+    @project = Project.new(description: "A project is a project")
+    @project.tickets.build(name: "This is a new ticket", description: "A ticket is a ticket")
   end
 
   def create

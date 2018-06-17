@@ -1,4 +1,5 @@
 class Ticket < ActiveRecord::Base
+  belongs_to :state
   belongs_to :project
   belongs_to :author, class_name: "User"
   has_many :attachments, dependent: :destroy

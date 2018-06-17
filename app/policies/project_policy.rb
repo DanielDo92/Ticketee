@@ -3,7 +3,7 @@ class ProjectPolicy < ApplicationPolicy
     def resolve
       return scope.none if user.nil?
       return scope.all.order(:name) if user.admin?
-      scope.joins(:roles).where(roles: {user_id:user}).order(:name)
+      scope.joins(:roles).where(roles: { user_id: user }).order(:name)
     end
   end
 
