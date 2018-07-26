@@ -15,3 +15,14 @@
     <p> <%= project.description %> </p>
   <% end %>
 </div>
+
+<% content_for :sidebar do %>
+    This is content for sidebar.
+    <%= link_to "Your Account", "vnexpress.net" %>
+<% end %>
+
+<% if content_for?(:sidebar) %>
+  <div class="sidebar">
+    <%= yield :sidebar %>
+  </div>
+<% end %>
