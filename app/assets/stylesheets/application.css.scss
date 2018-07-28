@@ -70,6 +70,9 @@ body {
   padding-top: 70px;
 }
 
+#tickets li, #states li {
+  padding-bottom: 10px;
+}
 
 /* Previously this is on top but bootstrap won't work with that location.
  * This is a manifest file that'll be compiled into application.css, which will include all the files

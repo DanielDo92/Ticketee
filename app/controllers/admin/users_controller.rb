@@ -76,7 +76,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def build_roles_for(user)
     user.roles.clear
-    role_data = params.fetch(:role,[])
+    role_data = params.fetch(:role, [])
     role_data.each do |project_id, role_name|
       if role_name.present?
         user.roles.build(project_id: project_id, role: role_name)

@@ -6,7 +6,7 @@ module TicketsHelper
         if comment.previous_state.present?
           value += " from #{render comment.previous_state}"
         end
-        value += "to #{render comment.state}"
+        value += " to #{render comment.state}"
         value.html_safe
       end
     end

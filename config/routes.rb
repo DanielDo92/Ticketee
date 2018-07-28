@@ -63,6 +63,7 @@ Rails.application.routes.draw do
         patch :archive
       end
     end
+    resources :states, only: [:new, :create, :index]
   end
 
   root "projects#index"
