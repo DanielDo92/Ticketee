@@ -4,12 +4,15 @@ class Comment < ActiveRecord::Base
   belongs_to :ticket
   belongs_to :author, class_name: "User"
 
+  attr_accessor :tag_names
+
   scope :persisted, -> { where.not(id: nil) }
   validates :text, presence: true
   delegate :project, to: :ticket
 
   before_create :set_previous_state
   after_create :set_ticket_state
+  after_create :associate_tags_with_ticket
 
   private
 
@@ -20,6 +23,14 @@ class Comment < ActiveRecord::Base
   def set_ticket_state
     ticket.state = state
     ticket.save!
+  end
+
+  def associate_tags_with_ticket
+    if tag_names
+      tag_names.split.uniq.each do |tag|
+        ticket.tags << Tag.find_or_create_by(name: tag)
+      end
+    end
   end
 
 end
