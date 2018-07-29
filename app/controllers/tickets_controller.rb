@@ -13,10 +13,10 @@ class TicketsController < ApplicationController
     @ticket.author = current_user
     authorize @ticket, :create?
     if @ticket.save
-      flash[:notice] = "Ticket has been created"
+      flash[:notice] = "Ticket has been created."
       redirect_to [@project, @ticket]
     else
-      flash.now[:alert]= "Ticket has not been created"
+      flash.now[:alert]= "Ticket has not been created."
       render "new"
     end
   end
@@ -56,7 +56,7 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:name, :description, attachments_attributes: [:file, :file_cache])
+    params.require(:ticket).permit(:name, :description, :tag_names, attachments_attributes: [:file, :file_cache])
   end
 
   def set_ticket
