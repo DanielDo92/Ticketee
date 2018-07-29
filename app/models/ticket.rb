@@ -6,6 +6,13 @@ class Ticket < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :attachments, reject_if: :all_blank
 
+  before_create :assign_default_state
   validates :name, presence: true
-  validates :description, presence: true, length: {maximum: 100, minimum: 10}
+  validates :description, presence: true, length: { maximum: 100, minimum: 10 }
+
+  private
+
+  def assign_default_state
+    self.state ||= State.default
+  end
 end

@@ -7,4 +7,10 @@ class State < ActiveRecord::Base
     State.update_all(default: false)
     update!(default: true)
   end
+
+  class << self
+    def default
+      find_by(default: true)
+    end
+  end
 end
