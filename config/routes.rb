@@ -63,7 +63,11 @@ Rails.application.routes.draw do
         patch :archive
       end
     end
-    resources :states, only: [:new, :create, :index]
+    resources :states, only: [:new, :create, :index] do
+      member do
+        get :make_default
+      end
+    end
   end
 
   root "projects#index"

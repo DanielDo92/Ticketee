@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180726154847) do
+ActiveRecord::Schema.define(version: 20180728154614) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "file",       limit: 255
@@ -57,8 +57,9 @@ ActiveRecord::Schema.define(version: 20180726154847) do
   create_table "states", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "color",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.boolean  "default",    limit: 1,   default: false
   end
 
   create_table "tickets", force: :cascade do |t|
