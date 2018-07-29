@@ -1,11 +1,17 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   def index
+    cookies[:july] = "Rainy month"
     @projects = policy_scope(Project)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def show
     authorize @project, :show?
+    @tickets = @project.tickets
   end
 
   def edit

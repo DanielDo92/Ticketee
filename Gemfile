@@ -27,6 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 gem 'unicorn'
 
+#AMS
+gem "active_model_serializers", "~> 0.9.3"
 gem 'rake', '< 11.0'
 
 gem "carrierwave", "~> 0.10.0"
