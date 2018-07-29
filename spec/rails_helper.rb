@@ -48,5 +48,6 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
   config.include Warden::Test::Helpers, type: :feature
+  config.include Devise::TestHelpers, type: :controller
   config.after(type: :feature) { Warden.test_reset! }
 end
