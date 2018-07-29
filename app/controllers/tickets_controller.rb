@@ -9,9 +9,15 @@ class TicketsController < ApplicationController
   end
 
   def create
-    @ticket = @project.tickets.build(ticket_params)
+    @ticket = @project.tickets.new
+
+    whitelisted_params = ticket_params
+    whitelisted_params.delete(:tag_names) unless policy(@ticket).tag?
+
+    @ticket.attributes = whitelisted_params
     @ticket.author = current_user
     authorize @ticket, :create?
+
     if @ticket.save
       flash[:notice] = "Ticket has been created."
       redirect_to [@project, @ticket]
