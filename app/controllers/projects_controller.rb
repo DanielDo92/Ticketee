@@ -3,10 +3,6 @@ class ProjectsController < ApplicationController
   def index
     cookies[:july] = "Rainy month"
     @projects = policy_scope(Project)
-    respond_to do |format|
-      format.html
-      format.json
-    end
   end
 
   def show

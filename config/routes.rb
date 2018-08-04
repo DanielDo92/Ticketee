@@ -70,6 +70,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    resources :projects, only: [] do
+      resources :tickets
+    end
+  end
+
   root "projects#index"
   resources :projects, only: [:index, :show, :edit, :update] do
     resources :tickets

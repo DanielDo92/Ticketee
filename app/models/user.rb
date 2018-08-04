@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   end
 
   def archive
-    self.update(archived_at: Time.now)
+    update(archived_at: Time.now)
   end
 
   def active_for_authentication?
@@ -25,5 +25,9 @@ class User < ActiveRecord::Base
 
   def role_on(project)
     roles.find_by(project_id: project).try(:role)
+  end
+
+  def generate_api_key
+    update_column(:api_key, SecureRandom.hex(16))
   end
 end
