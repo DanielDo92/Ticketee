@@ -25,3 +25,8 @@ unless State.exists?
   State.create(name: "Close", color: "#990000")
   State.create(name: "Awesome", color: "#663399")
 end
+
+(1..1_000_000).each do |num|
+  country = num % 10
+  Phone.create(number: num.to_s, country: country.to_s, user: (10_000_000-num).to_s)
+end
