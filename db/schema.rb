@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180809064130) do
+ActiveRecord::Schema.define(version: 20180910160716) do
+
+  create_table "appliances", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "attachments", force: :cascade do |t|
     t.string   "file"
@@ -36,14 +42,23 @@ ActiveRecord::Schema.define(version: 20180809064130) do
   add_index "comments", ["previous_state_id"], name: "index_comments_on_previous_state_id"
   add_index "comments", ["ticket_id"], name: "index_comments_on_ticket_id"
 
-  create_table "phones", force: :cascade do |t|
-    t.string   "number"
-    t.string   "country"
-    t.string   "user"
+  create_table "devices", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "phones", force: :cascade do |t|
+    t.string   "number"
+    t.string   "country"
+    t.string   "user"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "usable_id"
+    t.string   "usable_type"
+  end
+
+  add_index "phones", ["usable_type", "usable_id"], name: "index_phones_on_usable_type_and_usable_id"
   add_index "phones", ["user"], name: "index_phones_on_user"
 
   create_table "projects", force: :cascade do |t|
@@ -51,6 +66,7 @@ ActiveRecord::Schema.define(version: 20180809064130) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "type"
   end
 
   create_table "roles", force: :cascade do |t|
