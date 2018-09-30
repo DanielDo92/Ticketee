@@ -53,7 +53,9 @@
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+require "heartbeat/application"
 Rails.application.routes.draw do
+  mount Heartbeat::Application, at: "/heartbeat"
   devise_for :users
   namespace :admin do
     root "application#index"
